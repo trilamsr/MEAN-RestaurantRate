@@ -1,0 +1,38 @@
+<main>
+  <form (submit)=Submit()>
+    <div class="form-group">
+      <label for="restaurantName">Restaurant Name</label>
+      <input class="form-control" type="text" 
+          name="restaurantName"
+          [(ngModel)]="newRestaurant.restaurantName"
+          required
+          minlength="3" #nameF="ngModel">
+      <div *ngIf="!nameF.valid">
+        <div class="text-warning" *ngIf="nameF.errors.required">Name is Required</div>
+        <div class="text-warning" *ngIf="nameF.errors.minlength">Name must be at least 3 characters</div>
+      </div>
+
+    </div>
+    <div class="form-group">
+      <label for="cuisine">Cuisine</label>
+      <input class="form-control" 
+        type="text" name="cuisine"
+        [(ngModel)]="newRestaurant.cuisine"
+        required
+        #cuisineF="ngModel"
+        minlength="3">
+        <div *ngIf="!nameF.valid">
+          <div class="text-warning" *ngIf="cuisineF.errors.required">Cuisine is Required</div>
+          <div class="text-warning" *ngIf="cuisineF.errors.minlength">Cuisine must be at least 3 characters</div>
+        </div>
+    </div>
+    <div *ngIf="Error" class="d-flex justify-content-around">
+      Requirement for data is not met. Please edit the info above!
+    </div>
+    <hr>
+    <div class="d-flex justify-content-around">
+      <button class="form-control btn btn-primary col-5" type="submit">Submit</button>
+      <button routerLink="/home" class="form-control btn btn-dark col-5">Cancel</button>
+    </div>
+  </form>
+</main>

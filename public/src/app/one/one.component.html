@@ -1,0 +1,96 @@
+<div class="container">
+  <header>
+    <div>
+      <h3>{{restaurant.restaurantName}}</h3>
+    </div>
+    <div>
+      <h5>{{restaurant.cuisine}}</h5>
+    </div>
+  </header>
+
+  <main>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Reviewer</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Content</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let review of restaurant.reviews">
+          <td scoppe="row">{{review.reviewerName}}</td>
+          <td scoppe="row">{{review.rating}}</td>
+          <td scoppe="row">{{review.content}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+  <div *ngIf="!reviewToggle" class="d-flex justify-content-end">
+    <button class="btn btn-info" (click)="reviewToggle = !reviewToggle">Add Review</button>
+  </div>
+
+  <div *ngIf="reviewToggle">
+    <form (submit)="addReview()">
+
+
+
+
+
+
+      <div class="form-group">
+        <label for="ReviewerName">Name</label>
+        <input type="text" name="name" class="form-control" 
+          [(ngModel)]="reviewObject.reviewerName"
+          #reviewerF="ngModel"
+          required minlength="3">
+
+
+        <div *ngIf="!reviewerF.valid">
+          <div class="text-warning" *ngIf="reviewerF.errors.required">Name is Required</div>
+          <div class="text-warning" *ngIf="reviewerF.errors.minlength">Name must be at least 3 characters</div>
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+        <label for="ReviewerName">Rating</label>
+        <select name="rating" class="form-control" [(ngModel)]="reviewObject.rating" #ratingF="ngModel" min="1" max="5">
+          <option value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+          <option value="1">1</option>
+        </select>
+        <div *ngIf="!ratingF.valid">
+          {{ratingF.errors | json}}
+          <div class="text-warning" *ngIf="ratingF.errors.required">Rating is Required</div>
+          <div class="text-warning" *ngIf="ratingF.errors.minlength">Rating must be between 1 and 5</div>
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+        <label for="ReviewerName">Name</label>
+        <textarea name="content" rows="4" class="form-control" [(ngModel)]="reviewObject.content"
+          #contentReview="ngModel" required minlength="3"></textarea>
+
+        <div *ngIf="!contentReview.valid">
+          <div class="text-warning" *ngIf="contentReview.errors.minlength">Rating must be between 1 and 5</div>
+        </div>
+
+      </div>
+
+      <div *ngIf="Error" class="d-flex justify-content-around">
+        Requirement for review is not met. Please edit the info above!
+      </div>
+      <div *ngIf="reviewToggle" class="d-flex justify-content-around">
+        <button class="form-control btn btn-primary col-5" type="button" (click)="addReview()">Review</button>
+        <button class="btn btn-warning col-5" (click)="reviewToggle = !reviewToggle">Cancel</button>
+      </div>
+    </form>
+
+  </div>
+</div>

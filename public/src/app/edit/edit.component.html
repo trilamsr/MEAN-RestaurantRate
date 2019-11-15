@@ -1,0 +1,44 @@
+<div class="container">
+  <header>
+    <div>
+      <h3>You're editing {{savedData.restaurantCuisine}}</h3>
+    </div>
+    <div>
+      <h5>{{savedData.restaurantCuisine}}</h5>
+    </div>
+  </header>
+  <hr>
+  <main>
+    <form>
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" [(ngModel)]="restaurant.restaurantName" class="form-control" minlength="3" #nameFF="ngModel" required minlength="3">
+        <div *ngIf="!nameFF.valid">
+            <div class="text-warning" *ngIf="nameFF.errors.required">Name is Required</div>
+            <div class="text-warning" *ngIf="nameFF.errors.minlength">Name must be at least 3 characters</div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="cuisine">Name</label>
+        <input type="text" name="cuisine" [(ngModel)]="restaurant.cuisine"  class="form-control" required minlength="3" #cuisineFF="ngModel" required minlength="3">
+        <div *ngIf="!cuisineFF.valid">
+            <div class="text-warning" *ngIf="cuisineFF.errors.required">Name is Required</div>
+            <div class="text-warning" *ngIf="cuisineFF.errors.minlength">Name must be at least 3 characters</div>
+        </div>
+      </div>
+
+      <div *ngIf="Error" class="d-flex justify-content-around">
+        Requirement for data is not met. Please edit the info above!
+      </div>
+      <hr>
+
+      <div class="d-flex justify-content-around">
+        <button class="form-control btn btn-primary col-5" type="button" (click)="Submit()">Edit</button>
+        <button routerLink="/home" class="form-control btn btn-dark col-5">Cancel</button>
+      </div>
+    </form>
+  </main>
+</div>
+

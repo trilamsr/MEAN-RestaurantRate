@@ -1,0 +1,31 @@
+<main>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col"> Restaurant</th>
+        <th scope="col">Cuisine</th>
+        <th scope="col">Actions Available</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let restaurant of allRestaurant; index as i">
+        <td>{{i+1}}</td>
+        <td>{{restaurant.restaurantName}}</td>
+        <td>{{restaurant.cuisine}}</td>
+        <td class="row">
+          <div class="col"><button (click)="Reviews(restaurant)">Reviews</button></div>
+          <div class="col"><button (click)="Edit(restaurant)">Edit</button></div>
+          <div *ngIf="restaurant.deletable" class="col"><button (click)="Delete(restaurant)">Delete</button></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</main>
+<router-outlet></router-outlet>
+
+
+<footer class="d-flex justify-content-end">
+  <button routerLink="/add" class="btn btn-primary">Add Restaurant</button>
+</footer>
