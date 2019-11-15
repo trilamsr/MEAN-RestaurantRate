@@ -9,7 +9,6 @@ import { HttpService } from './services/http.service';
 import { HomeComponent } from './home/home.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { EditComponent } from './edit/edit.component';
-import { DeleteComponent } from './delete/delete.component';
 import { AddComponent } from './add/add.component';
 import { OneComponent } from './one/one.component';
 
@@ -19,7 +18,6 @@ import { OneComponent } from './one/one.component';
     HomeComponent,
     ReviewsComponent,
     EditComponent,
-    DeleteComponent,
     AddComponent,
     OneComponent
   ],
