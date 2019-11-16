@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   }
   setDeletable() {
     for (let restaurant of this.allRestaurant) {
-      restaurant.deletable = (Date.now() - new Date(restaurant.createdAt)) < 30000;
+      restaurant.deletable = (Date.now() - Number(new Date(restaurant.createdAt))) < 30000;
     }
   }
 
